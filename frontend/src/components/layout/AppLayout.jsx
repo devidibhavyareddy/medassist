@@ -9,7 +9,7 @@ const AppLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#060913] text-slate-100 font-sans selection:bg-cyan-500 selection:text-black">
+    <div className="flex h-screen w-screen overflow-hidden bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
       {/* Living background */}
       <AnimatedBackground />
 

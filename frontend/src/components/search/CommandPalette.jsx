@@ -95,7 +95,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#04060d]/80 backdrop-blur-md"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs"
           />
 
           {/* Palette Box */}
@@ -104,21 +104,21 @@ const CommandPalette = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="relative w-full max-w-xl glass-panel border border-cyan-500/30 rounded-2xl shadow-2xl overflow-hidden z-10"
+            className="relative w-full max-w-xl bg-white border border-slate-200/90 rounded-2xl shadow-2xl overflow-hidden z-10 text-slate-800"
           >
             {/* Search Input bar */}
-            <div className="flex items-center px-4 py-3.5 border-b border-slate-700/60 bg-slate-900/60">
-              <Search className="w-5 h-5 text-cyan-400 mr-3 shrink-0" />
+            <div className="flex items-center px-4 py-3.5 border-b border-slate-100 bg-slate-50/60">
+              <Search className="w-5 h-5 text-blue-600 mr-3 shrink-0" />
               <input
                 autoFocus
                 type="text"
                 placeholder="Search MedAssist (Patients, Doctors, Appointments)..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full bg-transparent text-white placeholder-slate-400 text-sm focus:outline-none"
+                className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-sm focus:outline-none"
               />
-              {loading && <Loader2 className="w-4 h-4 text-cyan-400 animate-spin mr-2" />}
-              <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-800 rounded border border-slate-700">
+              {loading && <Loader2 className="w-4 h-4 text-blue-600 animate-spin mr-2" />}
+              <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-slate-500 bg-white rounded border border-slate-200 shadow-2xs">
                 ESC
               </kbd>
             </div>
@@ -128,8 +128,8 @@ const CommandPalette = ({ isOpen, onClose }) => {
               {/* Doctors group */}
               {results.doctors.length > 0 && (
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1 font-semibold flex items-center gap-1.5">
-                    <Stethoscope className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 px-3 py-1 font-semibold flex items-center gap-1.5">
+                    <Stethoscope className="w-3.5 h-3.5 text-blue-600" />
                     Doctors
                   </div>
                   <div className="mt-1 space-y-1">
@@ -137,20 +137,20 @@ const CommandPalette = ({ isOpen, onClose }) => {
                       <div
                         key={doc._id}
                         onClick={() => handleSelect(user?.role === 'admin' ? '/admin/doctors' : '/doctor/dashboard')}
-                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-cyan-500/10 cursor-pointer transition-colors group"
+                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-blue-50 cursor-pointer transition-colors group"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-lg bg-indigo-950/60 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xs font-bold">
+                          <div className="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-700 text-xs font-bold">
                             Dr
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-slate-100 group-hover:text-cyan-300">
+                            <p className="text-sm font-semibold text-slate-900 group-hover:text-blue-600">
                               {doc.fullName}
                             </p>
-                            <p className="text-xs text-slate-400">{doc.specialization}</p>
+                            <p className="text-xs text-slate-500">{doc.specialization}</p>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     ))}
                   </div>
@@ -160,8 +160,8 @@ const CommandPalette = ({ isOpen, onClose }) => {
               {/* Patients group */}
               {results.patients.length > 0 && (
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1 font-semibold flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-teal-400" />
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 px-3 py-1 font-semibold flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-teal-600" />
                     Patients
                   </div>
                   <div className="mt-1 space-y-1">
@@ -169,22 +169,22 @@ const CommandPalette = ({ isOpen, onClose }) => {
                       <div
                         key={pat._id}
                         onClick={() => handleSelect(`/patient/timeline`)}
-                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-teal-500/10 cursor-pointer transition-colors group"
+                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-teal-50 cursor-pointer transition-colors group"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-lg bg-teal-950/60 border border-teal-500/30 flex items-center justify-center text-teal-300 text-xs font-bold">
+                          <div className="w-7 h-7 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700 text-xs font-bold">
                             Pt
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-slate-100 group-hover:text-teal-300">
+                            <p className="text-sm font-semibold text-slate-900 group-hover:text-teal-700">
                               {pat.fullName}
                             </p>
-                            <p className="text-xs text-slate-400 font-mono">
+                            <p className="text-xs text-slate-500 font-mono">
                               ID: {pat.patientId} • {pat.phone || 'No phone'}
                             </p>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     ))}
                   </div>
@@ -194,31 +194,31 @@ const CommandPalette = ({ isOpen, onClose }) => {
               {/* Appointments group */}
               {results.appointments.length > 0 && (
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1 font-semibold flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-blue-400" />
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 px-3 py-1 font-semibold flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-blue-600" />
                     Appointments
                   </div>
                   <div className="mt-1 space-y-1">
                     {results.appointments.map((appt) => (
                       <div
                         key={appt._id}
-                        onClick={() => handleSelect('/appointments')}
-                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-blue-500/10 cursor-pointer transition-colors group"
+                        onClick={() => handleSelect('/doctor/appointments')}
+                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-blue-50 cursor-pointer transition-colors group"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-lg bg-blue-950/60 border border-blue-500/30 flex items-center justify-center text-blue-300 text-xs">
+                          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 text-xs">
                             <Calendar className="w-3.5 h-3.5" />
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-slate-100 group-hover:text-blue-300">
+                            <p className="text-sm font-semibold text-slate-900 group-hover:text-blue-600">
                               {appt.patientId?.fullName || 'Patient'} with {appt.doctorId?.fullName || 'Doctor'}
                             </p>
-                            <p className="text-xs text-slate-400">
+                            <p className="text-xs text-slate-500">
                               {new Date(appt.date).toLocaleDateString()} at {appt.startTime} ({appt.status})
                             </p>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     ))}
                   </div>
@@ -231,7 +231,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
                 results.doctors.length === 0 &&
                 results.patients.length === 0 &&
                 results.appointments.length === 0 && (
-                  <div className="py-8 text-center text-slate-400 text-sm">
+                  <div className="py-8 text-center text-slate-500 text-sm">
                     No results found matching "{query}"
                   </div>
                 )}

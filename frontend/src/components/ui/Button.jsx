@@ -14,21 +14,21 @@ const Button = ({
   ...props
 }) => {
   const baseStyles =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#060913] disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98] cursor-pointer';
+    'relative inline-flex items-center justify-center font-medium transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98] cursor-pointer';
 
   const variants = {
     primary:
-      'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 border border-cyan-400/30 focus:ring-cyan-400',
+      'bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 border border-blue-600 focus:ring-blue-500',
     secondary:
-      'bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60 hover:border-slate-600 focus:ring-slate-500 backdrop-blur-md',
+      'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 shadow-2xs focus:ring-slate-400',
     danger:
-      'bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white shadow-lg shadow-rose-600/25 border border-rose-500/30 focus:ring-rose-400',
+      'bg-rose-600 hover:bg-rose-700 text-white shadow-sm shadow-rose-500/20 border border-rose-600 focus:ring-rose-500',
     outline:
-      'bg-transparent hover:bg-cyan-500/10 text-cyan-400 border border-cyan-500/40 hover:border-cyan-400 focus:ring-cyan-400',
+      'bg-transparent hover:bg-blue-50 text-blue-600 border border-blue-300 hover:border-blue-400 focus:ring-blue-400',
     ghost:
-      'bg-transparent hover:bg-slate-800/60 text-slate-300 hover:text-white focus:ring-slate-500',
+      'bg-transparent hover:bg-slate-100 text-slate-600 hover:text-slate-900 focus:ring-slate-400',
     ai:
-      'bg-gradient-to-r from-teal-400 via-cyan-500 to-indigo-600 hover:from-teal-300 hover:to-indigo-500 text-white shadow-lg shadow-cyan-500/30 border border-teal-300/40 focus:ring-teal-400',
+      'bg-gradient-to-r from-teal-600 via-sky-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white shadow-sm shadow-sky-500/20 border border-sky-500 focus:ring-sky-400',
   };
 
   const sizes = {

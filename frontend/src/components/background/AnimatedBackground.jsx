@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 /**
  * AnimatedBackground
- * Premium futuristic healthcare & AI living background.
- * Combines subtle gradient blobs, glowing medical nodes, grid lines, and ECG paths.
+ * Premium futuristic healthcare & AI living background in Neutral Light Theme.
+ * Soft ambient pastel gradients, subtle grid lines, micro data nodes, and optional ECG wave.
  * Respects prefers-reduced-motion.
  */
 const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
@@ -19,7 +19,7 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  // Generate deterministic particles to avoid hydration mismatches
+  // Generate deterministic particles
   const particles = useMemo(() => {
     const count = density === 'high' ? 24 : 14;
     return Array.from({ length: count }).map((_, i) => ({
@@ -29,43 +29,43 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
       size: (i % 3) + 2, // 2-4px
       duration: 18 + (i % 10) * 2, // 18s - 38s slow motion
       delay: (i % 5) * 1.5,
-      opacity: 0.15 + (i % 4) * 0.08,
-      color: i % 3 === 0 ? 'bg-cyan-400' : i % 3 === 1 ? 'bg-blue-400' : 'bg-teal-300',
+      opacity: 0.2 + (i % 4) * 0.08,
+      color: i % 3 === 0 ? 'bg-sky-500' : i % 3 === 1 ? 'bg-blue-500' : 'bg-teal-600',
     }));
   }, [density]);
 
   if (prefersReducedMotion) {
     return (
-      <div className="fixed inset-0 pointer-events-none -z-10 bg-[#060913] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1226]/50 via-[#060913] to-[#04060c]" />
+      <div className="fixed inset-0 pointer-events-none -z-10 bg-slate-50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/40 via-slate-50 to-slate-100/50" />
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10 bg-[#060913] overflow-hidden select-none">
-      {/* Deep medical gradient base */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#04060d] via-[#070d1e] to-[#040711]" />
+    <div className="fixed inset-0 pointer-events-none -z-10 bg-slate-50 overflow-hidden select-none">
+      {/* Soft gradient base */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-slate-50 via-blue-50/30 to-sky-50/20" />
 
-      {/* Cybernetic grid overlay */}
+      {/* Cybernetic grid overlay in light neutral */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(56, 189, 248, 0.4) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(56, 189, 248, 0.4) 1px, transparent 1px)
+            linear-gradient(to right, rgba(15, 23, 42, 0.5) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(15, 23, 42, 0.5) 1px, transparent 1px)
           `,
           backgroundSize: '48px 48px',
         }}
       />
 
-      {/* Soft Moving Ambient Orbs */}
+      {/* Soft Moving Ambient Pastel Orbs */}
       <motion.div
-        className="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-cyan-600/10 blur-[130px]"
+        className="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-sky-200/35 blur-[130px]"
         animate={{
-          x: [0, 50, 0],
-          y: [0, 40, 0],
-          scale: [1, 1.08, 1],
+          x: [0, 40, 0],
+          y: [0, 30, 0],
+          scale: [1, 1.05, 1],
         }}
         transition={{
           duration: 25,
@@ -75,11 +75,11 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
       />
 
       <motion.div
-        className="absolute top-[40%] -right-[15%] w-[50vw] h-[50vw] rounded-full bg-blue-600/10 blur-[140px]"
+        className="absolute top-[40%] -right-[15%] w-[50vw] h-[50vw] rounded-full bg-blue-200/25 blur-[140px]"
         animate={{
-          x: [0, -60, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.12, 1],
+          x: [0, -50, 0],
+          y: [0, 40, 0],
+          scale: [1, 1.08, 1],
         }}
         transition={{
           duration: 30,
@@ -89,11 +89,11 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
       />
 
       <motion.div
-        className="absolute -bottom-[20%] left-[25%] w-[45vw] h-[45vw] rounded-full bg-teal-500/8 blur-[120px]"
+        className="absolute -bottom-[20%] left-[25%] w-[45vw] h-[45vw] rounded-full bg-teal-100/40 blur-[120px]"
         animate={{
-          x: [0, 40, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.06, 1],
+          x: [0, 35, 0],
+          y: [0, -25, 0],
+          scale: [1, 1.04, 1],
         }}
         transition={{
           duration: 22,
@@ -112,12 +112,12 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
             height: p.size,
             left: `${p.x}%`,
             top: `${p.y}%`,
-            boxShadow: '0 0 10px rgba(56, 189, 248, 0.6)',
+            boxShadow: '0 0 8px rgba(14, 165, 233, 0.4)',
           }}
           animate={{
             y: [`0%`, `-35%`, `0%`],
             x: [`0%`, `${p.id % 2 === 0 ? 15 : -15}%`, `0%`],
-            opacity: [p.opacity, p.opacity * 1.8, p.opacity],
+            opacity: [p.opacity, p.opacity * 1.5, p.opacity],
           }}
           transition={{
             duration: p.duration,
@@ -128,11 +128,11 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
         />
       ))}
 
-      {/* Optional Subtle Heartbeat ECG Line */}
+      {/* Optional Heartbeat ECG Line in light mode */}
       {showEcg && (
-        <div className="absolute bottom-10 left-0 right-0 h-16 opacity-[0.06] overflow-hidden flex items-center">
+        <div className="absolute bottom-10 left-0 right-0 h-16 opacity-[0.08] overflow-hidden flex items-center">
           <svg
-            className="w-full h-12 text-cyan-400 stroke-current fill-none stroke-[1.5]"
+            className="w-full h-12 text-sky-600 stroke-current fill-none stroke-[1.5]"
             viewBox="0 0 1200 60"
             preserveAspectRatio="none"
           >
@@ -140,9 +140,6 @@ const AnimatedBackground = ({ showEcg = false, density = 'normal' }) => {
           </svg>
         </div>
       )}
-
-      {/* Vignette edge for cinematic focus */}
-      <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#04060d]/80 pointer-events-none" />
     </div>
   );
 };

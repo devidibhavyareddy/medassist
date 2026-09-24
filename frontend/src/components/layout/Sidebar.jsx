@@ -20,6 +20,7 @@ import {
   FolderLock,
   ChevronLeft,
   ChevronRight,
+  ShieldCheck,
   X,
 } from 'lucide-react';
 
@@ -74,22 +75,22 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
   const navItems = roleNavItems[user.role] || [];
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#080d1a]/95 backdrop-blur-xl border-r border-cyan-500/15 text-slate-300">
+    <div className="flex flex-col h-full bg-white/95 backdrop-blur-xl border-r border-slate-200/90 text-slate-700 shadow-sm">
       {/* Brand Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800/80">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/30 shrink-0">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 shrink-0">
             <Activity className="w-5 h-5 text-white" />
           </div>
           {!isCollapsed && (
             <div>
-              <span className="font-bold text-base tracking-tight text-white flex items-center gap-1.5">
+              <span className="font-bold text-base tracking-tight text-slate-900 flex items-center gap-1.5">
                 MEDASSIST
-                <span className="text-[9px] font-mono uppercase bg-cyan-950 text-cyan-400 border border-cyan-500/30 px-1.5 py-0.2 rounded">
+                <span className="text-[10px] font-mono uppercase bg-blue-50 text-blue-700 border border-blue-200 px-1.5 py-0.2 rounded font-semibold">
                   AI
                 </span>
               </span>
-              <p className="text-[10px] text-slate-400 font-medium tracking-wide">INTELLIGENT CARE</p>
+              <p className="text-[10px] text-slate-500 font-medium tracking-wide">INTELLIGENT CARE</p>
             </div>
           )}
         </div>
@@ -98,7 +99,7 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
         {onCloseMobile && (
           <button
             onClick={onCloseMobile}
-            className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+            className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -118,19 +119,19 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
               onClick={onCloseMobile}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group select-none ${
                 isActive
-                  ? 'bg-gradient-to-r from-cyan-500/15 to-blue-600/10 text-cyan-400 border border-cyan-500/30 shadow-sm shadow-cyan-500/10'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'
+                  ? 'bg-blue-50/90 text-blue-700 border border-blue-200/80 font-semibold shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
               title={isCollapsed ? item.label : ''}
             >
               <Icon
                 className={`w-5 h-5 shrink-0 transition-colors ${
-                  isActive ? 'text-cyan-400' : 'text-slate-500 group-hover:text-slate-300'
+                  isActive ? 'text-blue-600' : 'text-slate-400 group-hover:text-slate-600'
                 }`}
               />
               {!isCollapsed && <span className="truncate">{item.label}</span>}
               {!isCollapsed && item.to.includes('/ai') && (
-                <span className="ml-auto text-[10px] font-mono bg-teal-950/70 text-teal-300 border border-teal-500/30 px-1.5 py-0.5 rounded-md">
+                <span className="ml-auto text-[10px] font-mono bg-teal-50 text-teal-700 border border-teal-200 px-1.5 py-0.5 rounded-md font-semibold">
                   AI
                 </span>
               )}
@@ -140,15 +141,15 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
       </div>
 
       {/* Footer Role Card & Collapse Toggle */}
-      <div className="p-3 border-t border-slate-800/80">
+      <div className="p-3 border-t border-slate-100">
         {!isCollapsed && (
-          <div className="mb-2 p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/30 flex items-center justify-center text-cyan-300 font-mono text-xs font-bold uppercase shrink-0">
+          <div className="mb-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 border border-blue-200 flex items-center justify-center font-mono text-xs font-bold uppercase shrink-0">
               {user.name ? user.name.slice(0, 2) : 'US'}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold text-white truncate">{user.name}</p>
-              <p className="text-[10px] font-mono text-cyan-400 uppercase tracking-wider truncate">
+              <p className="text-xs font-semibold text-slate-900 truncate">{user.name}</p>
+              <p className="text-[10px] font-mono text-blue-600 uppercase tracking-wider truncate font-medium">
                 {user.role}
               </p>
             </div>
@@ -157,7 +158,7 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
 
         <button
           onClick={onToggleCollapse}
-          className="hidden md:flex w-full items-center justify-center gap-2 py-2 rounded-xl text-xs text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors cursor-pointer"
+          className="hidden md:flex w-full items-center justify-center gap-2 py-2 rounded-xl text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
         >
           {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           {!isCollapsed && <span>Collapse Sidebar</span>}
@@ -182,7 +183,7 @@ const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMobile })
         <div className="fixed inset-0 z-50 md:hidden flex">
           <div
             onClick={onCloseMobile}
-            className="fixed inset-0 bg-[#04060d]/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm"
           />
           <div className="relative w-72 max-w-[85vw] h-full z-10 animate-in slide-in-from-left duration-200">
             {sidebarContent}

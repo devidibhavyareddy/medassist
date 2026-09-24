@@ -35,7 +35,7 @@ const Modal = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#04060d]/80 backdrop-blur-md"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs"
           />
 
           {/* Modal Container */}
@@ -44,17 +44,17 @@ const Modal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className={`relative w-full ${maxWidth} glass-panel border border-cyan-500/25 rounded-2xl shadow-2xl p-6 sm:p-8 z-10 my-8`}
+            className={`relative w-full ${maxWidth} bg-white border border-slate-200/90 rounded-2xl shadow-xl p-6 sm:p-8 z-10 my-8 text-slate-800`}
           >
             {/* Top header */}
-            <div className="flex items-start justify-between pb-4 mb-5 border-b border-slate-700/50">
+            <div className="flex items-start justify-between pb-4 mb-5 border-b border-slate-100">
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-white">{title}</h2>
-                {subtitle && <p className="text-sm text-slate-400 mt-1">{subtitle}</p>}
+                <h2 className="text-xl font-bold tracking-tight text-slate-900">{title}</h2>
+                {subtitle && <p className="text-sm text-slate-500 mt-1">{subtitle}</p>}
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors ml-4 cursor-pointer"
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors ml-4 cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />

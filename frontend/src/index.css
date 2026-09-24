@@ -2,98 +2,211 @@
 
 @layer base {
   :root {
-    --bg-main: #060913;
-    --card-bg: rgba(13, 22, 41, 0.7);
-    --card-border: rgba(56, 189, 248, 0.15);
-    --accent-cyan: #06b6d4;
-    --accent-blue: #3b82f6;
-    --accent-emerald: #10b981;
-  }
-
-  .light {
     --bg-main: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-border: rgba(14, 165, 233, 0.2);
-    --accent-cyan: #0284c7;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
     --accent-blue: #2563eb;
-    --accent-emerald: #059669;
+    --accent-cyan: #0284c7;
+    --accent-teal: #0d9488;
+    color-scheme: light;
   }
 
   body {
     background-color: var(--bg-main);
-    color: #f1f5f9;
+    color: var(--text-primary);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
   }
-
-  .light body {
-    color: #0f172a;
-  }
 }
 
-/* Glassmorphism Styles */
+/* Neutral Clean Light Cards & Panels */
 .glass-panel {
-  background: rgba(13, 22, 41, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.12);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-
-.light .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(14, 165, 233, 0.18);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(13, 27, 49, 0.45) 100%);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.14);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.light .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.8) 100%);
-  border: 1px solid rgba(14, 165, 233, 0.18);
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.25);
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 6px 12px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -3px rgba(15, 23, 42, 0.05) !important;
 }
 
-/* Subtle glowing pulse */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-  }
-}
-
-.glow-active {
-  animation: pulse-glow 3s infinite ease-in-out;
-}
-
-/* Custom modern scrollbar */
+/* Neutral Light Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(10, 15, 28, 0.5);
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.25);
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.45);
+  background: #94a3b8;
+}
+
+/* Neutral Light Theme Universal Overrides for High Contrast Legibility */
+.bg-\[\#060913\],
+.bg-\[\#04060d\],
+.bg-\[\#040711\],
+.bg-\[\#040714\],
+.bg-\[\#070d1e\] {
+  background-color: #f8fafc !important;
+}
+
+.bg-\[\#080d1a\],
+.bg-\[\#0a1226\],
+.bg-\[\#0d1629\] {
+  background-color: #ffffff !important;
+}
+
+/* Adapt dark slate container classes to light neutral cards */
+.bg-slate-900,
+.bg-slate-900\/40,
+.bg-slate-900\/50,
+.bg-slate-900\/60,
+.bg-slate-900\/80,
+.bg-slate-950,
+.bg-slate-950\/30,
+.bg-slate-950\/40,
+.bg-slate-950\/50,
+.bg-slate-950\/60,
+.bg-slate-950\/70,
+.bg-slate-950\/80 {
+  background-color: #ffffff !important;
+}
+
+/* Neutral clean borders */
+.border-slate-800,
+.border-slate-800\/50,
+.border-slate-800\/60,
+.border-slate-800\/70,
+.border-slate-800\/80,
+.border-slate-700,
+.border-slate-700\/50,
+.border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography contrast adjustments */
+.text-white,
+.text-slate-100,
+.text-slate-200 {
+  color: #0f172a !important;
+}
+
+.text-slate-300,
+.text-slate-400 {
+  color: #475569 !important;
+}
+
+.text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Form input styling for neutral light theme */
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #2563eb !important;
+  outline: 2px solid rgba(37, 99, 235, 0.2) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Badges and pills soft neutral backgrounds */
+.bg-emerald-950,
+.bg-emerald-950\/30,
+.bg-emerald-950\/40,
+.bg-emerald-950\/50,
+.bg-emerald-950\/60 {
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.bg-rose-950,
+.bg-rose-950\/20,
+.bg-rose-950\/30,
+.bg-rose-950\/40,
+.bg-rose-950\/50 {
+  background-color: #fff1f2 !important;
+  color: #9f1239 !important;
+  border-color: #fecdd3 !important;
+}
+
+.bg-amber-950,
+.bg-amber-950\/20,
+.bg-amber-950\/30,
+.bg-amber-950\/40,
+.bg-amber-950\/50 {
+  background-color: #fffbeb !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
+}
+
+.bg-cyan-950,
+.bg-cyan-950\/30,
+.bg-cyan-950\/40,
+.bg-cyan-950\/50,
+.bg-cyan-950\/70,
+.bg-blue-950,
+.bg-blue-950\/30 {
+  background-color: #f0f9ff !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+
+.bg-teal-950,
+.bg-teal-950\/30,
+.bg-teal-950\/70 {
+  background-color: #f0fdfa !important;
+  color: #0f766e !important;
+  border-color: #99f6e4 !important;
+}
+
+.bg-purple-950,
+.bg-purple-950\/30,
+.bg-indigo-950,
+.bg-indigo-950\/30 {
+  background-color: #faf5ff !important;
+  color: #6b21a8 !important;
+  border-color: #e9d5ff !important;
+}
+
+/* Subtle pulse animation for light theme */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(37, 99, 235, 0.2);
+  }
+}
+
+.glow-active {
+  animation: pulse-glow 3s infinite ease-in-out;
 }
 
 @keyframes ecg-wave {

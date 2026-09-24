@@ -22,18 +22,20 @@ const Topbar = ({ onOpenMobileMenu }) => {
   const { user, logout } = useAuth();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Theme toggle state
+  // Theme toggle state: Default to light theme!
   const [isLightMode, setIsLightMode] = useState(() => {
-    return localStorage.getItem('medassist_theme') === 'light';
+    return localStorage.getItem('medassist_theme') !== 'dark';
   });
 
   useEffect(() => {
     const root = document.documentElement;
     if (isLightMode) {
       root.classList.add('light');
+      root.classList.remove('dark');
       localStorage.setItem('medassist_theme', 'light');
     } else {
       root.classList.remove('light');
+      root.classList.add('dark');
       localStorage.setItem('medassist_theme', 'dark');
     }
   }, [isLightMode]);
@@ -71,15 +73,15 @@ const Topbar = ({ onOpenMobileMenu }) => {
   const getRoleIcon = (role) => {
     switch (role) {
       case 'admin':
-        return <Shield className="w-3.5 h-3.5 text-indigo-400" />;
+        return <Shield className="w-3.5 h-3.5 text-indigo-600" />;
       case 'doctor':
-        return <Stethoscope className="w-3.5 h-3.5 text-cyan-400" />;
+        return <Stethoscope className="w-3.5 h-3.5 text-blue-600" />;
       case 'receptionist':
-        return <ClipboardList className="w-3.5 h-3.5 text-teal-400" />;
+        return <ClipboardList className="w-3.5 h-3.5 text-teal-600" />;
       case 'labTechnician':
-        return <FlaskConical className="w-3.5 h-3.5 text-amber-400" />;
+        return <FlaskConical className="w-3.5 h-3.5 text-amber-600" />;
       default:
-        return <User className="w-3.5 h-3.5 text-blue-400" />;
+        return <User className="w-3.5 h-3.5 text-sky-600" />;
     }
   };
 
@@ -90,18 +92,18 @@ const Topbar = ({ onOpenMobileMenu }) => {
 
   return (
     <>
-      <header className="sticky top-0 z-20 h-16 bg-[#080d1a]/80 backdrop-blur-xl border-b border-cyan-500/15 px-4 sm:px-6 flex items-center justify-between">
+      <header className="sticky top-0 z-20 h-16 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 flex items-center justify-between shadow-xs">
         {/* Left: Mobile hamburger & Page Title */}
         <div className="flex items-center gap-3">
           <button
             onClick={onOpenMobileMenu}
-            className="md:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none cursor-pointer"
+            className="md:hidden p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 focus:outline-none cursor-pointer"
             aria-label="Open navigation menu"
           >
             <Menu className="w-5 h-5" />
           </button>
           <div>
-            <h1 className="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            <h1 className="text-base sm:text-lg font-bold tracking-tight text-slate-900 flex items-center gap-2">
               {getPageTitle(location.pathname)}
             </h1>
           </div>
@@ -111,13 +113,13 @@ const Topbar = ({ onOpenMobileMenu }) => {
         <div className="flex-1 max-w-md mx-4 hidden lg:block">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="w-full flex items-center justify-between px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-cyan-500/40 text-slate-400 hover:text-slate-200 transition-colors text-xs cursor-pointer"
+            className="w-full flex items-center justify-between px-3.5 py-1.5 rounded-xl bg-slate-100/80 border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-800 transition-colors text-xs cursor-pointer"
           >
             <div className="flex items-center gap-2">
-              <Search className="w-3.5 h-3.5 text-cyan-400" />
+              <Search className="w-3.5 h-3.5 text-blue-600" />
               <span>Search MedAssist...</span>
             </div>
-            <kbd className="px-2 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-800 rounded border border-slate-700">
+            <kbd className="px-2 py-0.5 text-[10px] font-mono text-slate-500 bg-white rounded border border-slate-200 shadow-2xs">
               Ctrl + K
             </kbd>
           </button>
@@ -128,7 +130,7 @@ const Topbar = ({ onOpenMobileMenu }) => {
           {/* Mobile search icon button */}
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+            className="lg:hidden p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Open search palette"
           >
             <Search className="w-5 h-5" />
@@ -137,11 +139,11 @@ const Topbar = ({ onOpenMobileMenu }) => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
             aria-label="Toggle theme"
           >
-            {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-300" />}
+            {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-500" />}
           </button>
 
           {/* Notification Center */}
@@ -149,14 +151,14 @@ const Topbar = ({ onOpenMobileMenu }) => {
 
           {/* User profile dropdown / info */}
           {user && (
-            <div className="flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-slate-800">
+            <div className="flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-slate-200">
               <div className="hidden sm:block text-right">
-                <p className="text-xs font-semibold text-white tracking-tight leading-none">
+                <p className="text-xs font-semibold text-slate-900 tracking-tight leading-none">
                   {user.name}
                 </p>
                 <div className="flex items-center justify-end gap-1 mt-1">
                   {getRoleIcon(user.role)}
-                  <span className="text-[10px] font-mono uppercase text-cyan-400 font-medium">
+                  <span className="text-[10px] font-mono uppercase text-blue-600 font-semibold">
                     {user.role}
                   </span>
                 </div>
@@ -164,7 +166,7 @@ const Topbar = ({ onOpenMobileMenu }) => {
 
               <button
                 onClick={handleLogout}
-                className="p-2 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 border border-transparent hover:border-rose-500/30 transition-all cursor-pointer"
+                className="p-2 rounded-xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-all cursor-pointer"
                 title="Logout of MedAssist"
                 aria-label="Sign out"
               >
