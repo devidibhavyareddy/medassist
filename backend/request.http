@@ -1,0 +1,169 @@
+### =====================================================
+### MEDASSIST BACKEND - REQUEST FILE
+### Base URL
+### =====================================================
+
+@baseUrl = http://localhost:5000
+@token = PASTE_JWT_TOKEN_HERE
+
+
+### =====================================================
+### 1. SERVER TEST
+### =====================================================
+
+GET {{baseUrl}}/
+
+
+### =====================================================
+### 2. REGISTER PATIENT
+### =====================================================
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "Rahul Kumar",
+    "email": "rahul@gmail.com",
+    "password": "123456",
+    "phone": "9876543210"
+}
+
+
+### =====================================================
+### 3. REGISTER ANOTHER PATIENT
+### =====================================================
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "Priya Sharma",
+    "email": "priya@gmail.com",
+    "password": "123456",
+    "phone": "9876543211"
+}
+
+
+### =====================================================
+### 4. LOGIN
+### =====================================================
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "rahul@gmail.com",
+    "password": "123456"
+}
+
+
+### =====================================================
+### 5. LOGIN WITH WRONG PASSWORD
+### =====================================================
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "rahul@gmail.com",
+    "password": "wrongpassword"
+}
+
+
+### =====================================================
+### 6. LOGIN WITH WRONG EMAIL
+### =====================================================
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "unknown@gmail.com",
+    "password": "123456"
+}
+
+
+### =====================================================
+### 7. DUPLICATE REGISTRATION TEST
+### =====================================================
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "Rahul Kumar",
+    "email": "rahul@gmail.com",
+    "password": "123456",
+    "phone": "9876543210"
+}
+
+
+### =====================================================
+### 8. PROTECTED ROUTE
+### =====================================================
+
+GET {{baseUrl}}/api/test/protected
+Authorization: Bearer {{token}}
+
+
+### =====================================================
+### 9. PROTECTED ROUTE WITHOUT TOKEN
+### =====================================================
+
+GET {{baseUrl}}/api/test/protected
+
+
+### =====================================================
+### 10. PROTECTED ROUTE WITH INVALID TOKEN
+### =====================================================
+
+GET {{baseUrl}}/api/test/protected
+Authorization: Bearer invalid_token
+
+
+### =====================================================
+### 11. PROTECTED ROUTE WITH EMPTY TOKEN
+### =====================================================
+
+GET {{baseUrl}}/api/test/protected
+Authorization: Bearer
+
+
+### =====================================================
+### 12. TEST ADMIN ROLE
+### =====================================================
+
+GET {{baseUrl}}/api/test/admin
+Authorization: Bearer {{token}}
+
+
+### =====================================================
+### 13. TEST DOCTOR ROLE
+### =====================================================
+
+GET {{baseUrl}}/api/test/doctor
+Authorization: Bearer {{token}}
+
+
+### =====================================================
+### 14. TEST RECEPTIONIST ROLE
+### =====================================================
+
+GET {{baseUrl}}/api/test/receptionist
+Authorization: Bearer {{token}}
+
+
+### =====================================================
+### 15. TEST LAB TECHNICIAN ROLE
+### =====================================================
+
+GET {{baseUrl}}/api/test/lab-technician
+Authorization: Bearer {{token}}
+
+
+### =====================================================
+### 16. TEST PATIENT ROLE
+### =====================================================
+
+GET {{baseUrl}}/api/test/patient
+Authorization: Bearer {{token}}
